@@ -13,14 +13,16 @@ Hook = {
 -- @param Identity (table): 
 -- @param Callback (function): 
 -- =============================================================================
-function Hook:Add( Event, Identity, Callback )
+function Hook:Add( Event, Identity, Callback, Meta )
    self.Cache[ Event ] = self.Cache[ Event ] or { }
 
-   table.insert( self.Cache[ Event ], { Identity = Identity, Callback = Callback } )
+   table.insert( self.Cache[ Event ], { Identity = Identity, Callback = Meta and function( ... )
+      return Callback( Meta, ... )
+   end or Callback } )
 end
 
 -- =============================================================================
--- Function to be used to add a new hook to the cache.
+-- Function to be used to remove a hook from the cache.
 -- @param Event (table): The event of the callback we are going to unhook.
 -- @param Identity (table): The identity of the callback we are going to unhook.
 -- =============================================================================
@@ -43,7 +45,7 @@ function Hook:Remove( Event, Identity )
 end
 
 -- =============================================================================
--- Function to be used to add a new hook to the cache.
+-- Function to be used to call a hook from within the cache.
 -- @param Event (table): 
 -- @param varargs: 
 -- =============================================================================
