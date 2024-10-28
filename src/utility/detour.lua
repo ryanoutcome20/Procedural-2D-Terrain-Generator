@@ -29,3 +29,13 @@ end
 function love.draw( )
    Hook:Call( 'Render' )
 end
+
+-- =============================================================================
+-- Function to be used to override the default load function.
+-- @param Y (number): Amount of horizontal mouse wheel movement. Positive values indicate movement to the right.
+-- @param X (number): Amount of vertical mouse wheel movement. Positive values indicate upward movement.
+-- =============================================================================
+function love.wheelmoved( X, Y )
+   Hook:Call( 'Wheel', X, Y )
+end
+

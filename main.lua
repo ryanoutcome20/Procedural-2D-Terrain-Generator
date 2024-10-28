@@ -32,3 +32,4 @@ require( 'src/utility/detour' )
 
 require( 'src/generator' )
 require( 'src/rendering' )
+require( 'src/scroll' )
