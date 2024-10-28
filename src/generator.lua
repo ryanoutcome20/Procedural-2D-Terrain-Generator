@@ -2,11 +2,14 @@
 -- Main Generator System
 -- =============================================================================
 
--- Pixel Table
+-- Pixels Table
 local Pixels = { }
 
 -- =============================================================================
--- 
+-- Function to be used to get the elevation at a specific X and Y.
+-- @param X (number): The X pixel.
+-- @param Y (number): The Y pixel.
+-- @return number: The elevation.
 -- =============================================================================
 function Terrain:GetPixel( X, Y )
    local Cache = Pixels[ Y ]
@@ -19,7 +22,9 @@ function Terrain:GetPixel( X, Y )
 end
 
 -- =============================================================================
--- 
+-- Function to be used to get the color at a specific elevation.
+-- @param Final (number): The elevation to calculate the color for.
+-- @return table: The color table.
 -- =============================================================================
 function Terrain:GetColor( Final )
    local Config = self.Config
@@ -38,7 +43,7 @@ function Terrain:GetColor( Final )
 end
 
 -- =============================================================================
--- 
+-- Function to be used to generate the pixel map.
 -- =============================================================================
 function Terrain:Generate( )
    local Config = self.Config
@@ -70,4 +75,4 @@ end
 -- Hooks
 -- =============================================================================
 
-Hook:Add( 'Initialize', 'Generator', Terrain.Generate, Terrain )
+Hook:Add( 'Calculate', 'Generator', Terrain.Generate, Terrain )

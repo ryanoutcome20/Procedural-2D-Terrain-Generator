@@ -12,7 +12,7 @@ function love.load( )
    -- Get width & height.
    Terrain.Width, Terrain.Height = love.graphics.getDimensions( )
 
-   Hook:Call( 'Initialize' )
+   Hook:Call( 'Calculate' )
 end
 
 -- =============================================================================
